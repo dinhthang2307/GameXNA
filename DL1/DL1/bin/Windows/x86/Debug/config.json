@@ -1,0 +1,19 @@
+{
+  "game_title": "DL1",
+  "scaleX": 1.2,
+  "units": {
+    "walkingMan": [
+      "unit\\walkingMan\\unit-0",
+      "unit\\walkingMan\\unit-1",
+      "unit\\walkingMan\\unit-2",
+      "unit\\walkingMan\\unit-3",
+      "unit\\walkingMan\\unit-4",
+      "unit\\walkingMan\\unit-5",
+      "unit\\walkingMan\\unit-6",
+      "unit\\walkingMan\\unit-7",
+      "unit\\walkingMan\\unit-8"
+    ]
+  },
+  "map": "Maps\\BG",
+  "scaleY": 0.8
+}
