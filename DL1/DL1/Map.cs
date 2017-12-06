@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DL1
 {
     // video 5/38
-    public class Map:GameVisibleEntity
+    public class Map:GameVisibleEntity2D
     {
         //Sprite2D sprite2D;
         public Map(Sprite2D sprite2D) : base(sprite2D)

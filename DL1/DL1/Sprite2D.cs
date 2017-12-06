@@ -17,12 +17,13 @@ namespace DL1
             private float _width;
             private float _height;
             private int _nCount;
+             
             private IList<Texture2D> _textures;
 
             int idx;
+        int _state=0;
 
-
-            public Sprite2D(IList<Texture2D> textures, float left, float top)
+        public Sprite2D(IList<Texture2D> textures, float left, float top)
             {
                 idx = 0;
                 _left = left;
@@ -38,11 +39,25 @@ namespace DL1
             public override void Draw(GameTime gameTime, object handler)
             {
                 SpriteBatch spriteBatch = handler as SpriteBatch;
+            if(_state==1)
+                spriteBatch.Draw(_textures[idx], new Vector2(_left, _top), Color.Yellow);
+            else
                 spriteBatch.Draw(_textures[idx], new Vector2(_left, _top), Color.White);
-            }
+        }
+        public bool IsSelected(Vector2 mousePos)
+        {
+            if (mousePos.X >= this._left && mousePos.X < this._left + _width &&
+                mousePos.Y < this._top && mousePos.Y > this._top - _height)
+                return true;
+            return false;
+        }
+        public void Select(bool IsSelected)
+        {
 
-            #region property
-            public float Left { get { return _left; } set { _left = value; } }
+        }
+
+        #region property
+        public float Left { get { return _left; } set { _left = value; } }
             public float Top { get { return _top; } set { _top = value; } }
             public float Width { get { return _width; } set { _width = value; } }
             public float Height { get { return _height; } set { _height = value; } }

@@ -15,6 +15,7 @@ namespace DL1
         SpriteBatch spriteBatch;
         IList<GameEntities> _entities;
         static Random rnd = new Random();
+        Matrix matrix = Matrix.Identity;
 
         public Game1()
         {
@@ -32,6 +33,7 @@ namespace DL1
         {
             // TODO: Add your initialization logic here
             _entities = new List<GameEntities>();
+            this.IsMouseVisible = true;
             base.Initialize();
         }
         
@@ -96,7 +98,20 @@ namespace DL1
         {
             // TODO: Unload any non ContentManager content here
         }
-
+       /* float R = 10;
+        float A = 5;
+        float w = 10;
+        float phi = 30f;
+        float t = 0;
+        float dt = 0.01f;
+        float alpha = 0;
+        float dAlpha = 1f;
+        float scale = 1.0f;
+        float dScale = 0.001f;
+        float sign = -0.01f;
+        float v = 0;
+       
+        float a = 0.1f;*/
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -113,6 +128,29 @@ namespace DL1
             {
                 _entities[i].Update(gameTime);
             }
+            MouseState ms = Mouse.GetState();
+            for (int i = 0; i < _entities.Count; i++)
+            {
+               if( _entities[i].IsSelected(new Vector2(ms.X, ms.Y)){
+                    selectedIdx = i;
+                    break;
+                }
+
+            }
+            // float x = A * (float)Math.Cos(w * t + phi);
+            // x = R * (float)Math.Sin(alpha);
+            //float y = R * (float)Math.Cos(alpha);
+            //float x = (float)(v*t + 0.5*a*t*t);
+            // t += dt;
+            //  if (Math.Abs(scale) >= 1.01|| Math.Abs(scale)<0)
+            // {
+            //     dScale += sign;
+            //  }
+            //scale += dScale;
+            // matrix = Matrix.CreateTranslation(new Vector3(120, 20f, 0f));
+            //matrix = Matrix.CreateScale(new Vector3(0.5f, 0.5f, 1f))*Matrix.CreateRotationZ((float)(Math.PI/6f))* Matrix.CreateTranslation(new Vector3(120, 20f, 0f));
+            //matrix = Matrix.CreateScale(scale);
+            // matrix = Matrix.CreateTranslation(x, 0f, 0f);
             base.Update(gameTime);
         }
 
@@ -127,7 +165,7 @@ namespace DL1
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, matrix);
             //spriteBatch.Draw(_texture, position, Color.White);
 
             for (int i = 0; i < _entities.Count; i++)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DL1
 {
-    public abstract class Unit:GameVisibleEntity
+    public abstract class Unit:GameVisibleEntity2D
     {
         int hp;
         int mp;

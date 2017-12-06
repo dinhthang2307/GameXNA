@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace DL1
 {
     //video 5:38
-    public class GameVisibleEntity:GameEntities
+    public class GameVisibleEntity2D:GameEntities
     {
-        AbstractModel _model;
-        public GameVisibleEntity(AbstractModel model)
+        Sprite2D _model;
+        public GameVisibleEntity2D(Sprite2D model)
         {
             this._model = model;
         }
@@ -24,5 +24,14 @@ namespace DL1
         {
             _model.Draw(gameTime, handler);
         }
+        public virtual bool IsSelected(Vector2 mousePos)
+        {
+            return this._model.IsSelected(mousePos);
+        }
+        public virtual void Select(bool isSelected)
+        {
+            this._model.Select(isSelected);
+        }
+
     }
 }

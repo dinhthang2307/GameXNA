@@ -45,9 +45,11 @@
     <Compile Include="Config.cs" />
     <Compile Include="ConstantValue.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameButton.cs" />
+    <Compile Include="GameControl.cs" />
     <Compile Include="GameEntities.cs" />
     <Compile Include="GameInvisibleEntity.cs" />
-    <Compile Include="GameVisibleEntity.cs" />
+    <Compile Include="GameVisibleEntity2D.cs" />
     <Compile Include="walkingMan.cs" />
     <Compile Include="Island.cs" />
     <Compile Include="Map.cs" />
