@@ -14,6 +14,7 @@ namespace DL1
 
         public GameVisibleEntity2D(Sprite2D model)
         {
+            
             this._model = model;
         }
         public override void Update(GameTime gameTime)
@@ -21,8 +22,9 @@ namespace DL1
             base.Update(gameTime);
             _model.Update(gameTime);
         }
-        public virtual void Draw(GameTime gameTime, object handler)
+        public override void Draw(GameTime gameTime, object handler)
         {
+            base.Draw(gameTime, handler);
             _model.Draw(gameTime, handler);
         }
 

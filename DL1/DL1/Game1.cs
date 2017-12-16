@@ -23,12 +23,6 @@ namespace DL1
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -50,9 +44,9 @@ namespace DL1
             //_texture = this.Content.Load<Texture2D>("BG");
 
             var walkingMans = createWalkingManList();
-            _entities.Add(createBackground());
             (_entities as List<GameVisibleEntity2D>).AddRange(walkingMans);
-           
+            _entities.Add(createBackground());
+       
 
         }
 
@@ -74,7 +68,6 @@ namespace DL1
             var unitTextures = Config.Instance.LoadUnitTextures("walkingMan");
             for(int i = 0; i < unitTextures.Length; i++)
             {
-                //Config.Instance.LoadUnitTextures("");
                 var tex = this.Content.Load<Texture2D>(Config.Instance.LoadUnitTextures("walkingMan")[i]);
                 textList.Add(tex);
             }
@@ -105,7 +98,6 @@ namespace DL1
                 Exit();
             for (int i = 0; i < _entities.Count; i++)
             {
-            
                 _entities[i].Update(gameTime);
             }
             MouseState ms = Mouse.GetState();
@@ -114,23 +106,28 @@ namespace DL1
                 {
                     _entities[i].Select(false);
                     if (_entities[i].IsSelected(new Vector2(ms.X, ms.Y))){
-                    
-                       
-                            selectedIdx = i;
-                        break;
+                        if(selectedIdx==-1)
+                            selectedIdx = i;   
                     }
-
                 }
                 if (selectedIdx != -1)
                 {
-                    _entities[selectedIdx].Select(true);
+                    for(int i = 0; i < _entities.Count; i++)
+                    {
+                        if(selectedIdx!=i)
+                            _entities[i].Select(false);
+                        else
+                            _entities[selectedIdx].Select(true);
+                    }
+                   
                     selectedIdx = -1;
                 }
             }
+            
             base.Update(gameTime);
         }
 
-        Vector2 position = Vector2.Zero;
+        //Vector2 position = Vector2.Zero;
 
         protected override void Draw(GameTime gameTime)
         {
@@ -138,7 +135,6 @@ namespace DL1
 
             // TODO: Add your drawing code here
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, matrix);
-            //spriteBatch.Draw(_texture, position, Color.White);
 
             for (int i = 0; i < _entities.Count; i++)
             {

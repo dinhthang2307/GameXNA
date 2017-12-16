@@ -7,9 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DL1
-{
-
-    
+{ 
         public class Sprite2D:AbstractModel
         {
             private float _left;
@@ -17,23 +15,16 @@ namespace DL1
             private float _width;
             private float _height;
             private int _nCount;
-        private float _depth;
+            private float _depth;
             private IList<Texture2D> _textures;
-
             int idx;
-        int _state=0;
-        
-      
-        public Sprite2D(IList<Texture2D> textures, float left, float top, float depth)
-            {
-                idx = 0;
-                _left = left;
-                _top = top;
-                this._textures = textures;
-                _nCount = textures.Count;
-                _depth = depth;
-            _height = _textures[0].Height;
-            _width = _textures[0].Width;
+            int _state=0;
+            public Sprite2D(IList<Texture2D> textures, float left, float top, float depth){
+                    idx = 0;
+                    _left = left;
+                    _top = top;
+                    _depth = depth;
+                    this.Textures = textures;
             }
             public override void Update(GameTime gameTime)
             {
@@ -44,26 +35,25 @@ namespace DL1
             {
                 SpriteBatch spriteBatch = handler as SpriteBatch;
                 if(_state==1)
-                // spriteBatch.Draw(_textures[idx], new Vector2(_left, _top), new Rectangle(0, 0,(int)_width, (int)_height), Color.Yellow, 0f, Vector2.Zero, 1f, SpriteEffects.None, _depth);
-                spriteBatch.Draw(_textures[idx], new Vector2(_left, _top), Color.Blue);
-            else
-                spriteBatch.Draw(_textures[idx], new Vector2(_left, _top), Color.White);
-            //spriteBatch.Draw(_textures[idx], new Vector2(_left, _top), new Rectangle(0, 0, (int)_width, (int)_height), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, _depth);
+                    spriteBatch.Draw(_textures[idx], new Vector2(_left, _top), new Rectangle(0, 0, (int)_width, (int)_height), Color.Black, 0f, Vector2.Zero, 1f, SpriteEffects.None, Depth);
+                else
+                    spriteBatch.Draw(_textures[idx], new Vector2(_left, _top), new Rectangle(0, 0, (int)_width, (int)_height), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, Depth);
             }
-        public bool IsSelected(Vector2 mousePos)
-        {
-            if (mousePos.X >= this._left && mousePos.X <= this._left + _width &&
-                mousePos.Y >= this._top && mousePos.Y <= this._top + _height)
-                return true;
-            return false;
-        }
-        public void Select(bool isSelected)
-        {
-            if (isSelected)
-                _state = 1;
-            else
-                _state = 0;
-        }
+
+            public bool IsSelected(Vector2 mousePos)
+            {
+                if (mousePos.X >= this._left && mousePos.X <= this._left + _width &&
+                    mousePos.Y >= this._top && mousePos.Y <= this._top + _height)
+                    return true;
+                return false;
+            }
+            public void Select(bool isSelected)
+            {
+                if (isSelected)
+                    _state = 1;
+                else
+                    _state = 0;
+            }
 
 
 
@@ -98,6 +88,5 @@ namespace DL1
                 }
             }
         #endregion
-
     }
 }
