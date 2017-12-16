@@ -13,10 +13,10 @@ namespace DL1
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        IList<GameEntities> _entities;
+        IList<GameVisibleEntity2D> _entities;
         static Random rnd = new Random();
         Matrix matrix = Matrix.Identity;
-
+        int selectedIdx = -1;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -32,7 +32,7 @@ namespace DL1
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _entities = new List<GameEntities>();
+            _entities = new List<GameVisibleEntity2D>();
             this.IsMouseVisible = true;
             base.Initialize();
         }
@@ -51,7 +51,7 @@ namespace DL1
 
             var walkingMans = createWalkingManList();
             _entities.Add(createBackground());
-            (_entities as List<GameEntities>).AddRange(walkingMans);
+            (_entities as List<GameVisibleEntity2D>).AddRange(walkingMans);
            
 
         }
@@ -63,7 +63,7 @@ namespace DL1
             var mapRes = Config.Instance.jsonCfg["map"].ToString();
             var tex = this.Content.Load<Texture2D>(mapRes);
             texList.Add(tex);
-            return new Island(new Sprite2D(texList, 0, 0));
+            return new Island(new Sprite2D(texList, 0, 0, 0.1f));
         }
 
         private walkingMan[] createWalkingManList()
@@ -84,7 +84,7 @@ namespace DL1
             {
                 float x = rnd.Next() % 700;
                 float y = rnd.Next() % 500;
-                r.Add(new walkingMan(new Sprite2D(textList, x, y)));
+                r.Add(new walkingMan(new Sprite2D(textList, x, y, 0.5f)));
             }
 
             return r.ToArray();
@@ -98,74 +98,46 @@ namespace DL1
         {
             // TODO: Unload any non ContentManager content here
         }
-       /* float R = 10;
-        float A = 5;
-        float w = 10;
-        float phi = 30f;
-        float t = 0;
-        float dt = 0.01f;
-        float alpha = 0;
-        float dAlpha = 1f;
-        float scale = 1.0f;
-        float dScale = 0.001f;
-        float sign = -0.01f;
-        float v = 0;
-       
-        float a = 0.1f;*/
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+   
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
-            //position += new Vector2(1, 1);
             for (int i = 0; i < _entities.Count; i++)
             {
+            
                 _entities[i].Update(gameTime);
             }
             MouseState ms = Mouse.GetState();
-            for (int i = 0; i < _entities.Count; i++)
-            {
-               if( _entities[i].IsSelected(new Vector2(ms.X, ms.Y)){
-                    selectedIdx = i;
-                    break;
-                }
+            if (ms.LeftButton == ButtonState.Pressed) {
+                for (int i = 0; i < _entities.Count; i++)
+                {
+                    _entities[i].Select(false);
+                    if (_entities[i].IsSelected(new Vector2(ms.X, ms.Y))){
+                    
+                       
+                            selectedIdx = i;
+                        break;
+                    }
 
+                }
+                if (selectedIdx != -1)
+                {
+                    _entities[selectedIdx].Select(true);
+                    selectedIdx = -1;
+                }
             }
-            // float x = A * (float)Math.Cos(w * t + phi);
-            // x = R * (float)Math.Sin(alpha);
-            //float y = R * (float)Math.Cos(alpha);
-            //float x = (float)(v*t + 0.5*a*t*t);
-            // t += dt;
-            //  if (Math.Abs(scale) >= 1.01|| Math.Abs(scale)<0)
-            // {
-            //     dScale += sign;
-            //  }
-            //scale += dScale;
-            // matrix = Matrix.CreateTranslation(new Vector3(120, 20f, 0f));
-            //matrix = Matrix.CreateScale(new Vector3(0.5f, 0.5f, 1f))*Matrix.CreateRotationZ((float)(Math.PI/6f))* Matrix.CreateTranslation(new Vector3(120, 20f, 0f));
-            //matrix = Matrix.CreateScale(scale);
-            // matrix = Matrix.CreateTranslation(x, 0f, 0f);
             base.Update(gameTime);
         }
 
         Vector2 position = Vector2.Zero;
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, matrix);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, null, null, null, null, matrix);
             //spriteBatch.Draw(_texture, position, Color.White);
 
             for (int i = 0; i < _entities.Count; i++)

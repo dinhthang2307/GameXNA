@@ -14,7 +14,7 @@ namespace DL1
         {
             base.Update(gameTime);
         }
-        public virtual void Draw(GameTime gameTime, object handler)
+        public override void Draw(GameTime gameTime, object handler)
         {
 
         }

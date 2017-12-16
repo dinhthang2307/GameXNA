@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>F:/MyRepository/GAME/GameXNA1/DL1/DL1/Content/Maps/BG.png</SourceFile>
+  <SourceFile>F:/MyRepository/GAME/GameXNA2/DL1/DL1/Content/Maps/BG.png</SourceFile>
   <SourceTime>2014-12-28T15:07:30+07:00</SourceTime>
-  <DestFile>F:/MyRepository/GAME/GameXNA1/DL1/DL1/Content/bin/Windows/Maps/BG.xnb</DestFile>
-  <DestTime>2017-12-04T13:36:22.7987805+07:00</DestTime>
+  <DestFile>F:/MyRepository/GAME/GameXNA2/DL1/DL1/Content/bin/Windows/Maps/BG.xnb</DestFile>
+  <DestTime>2017-12-14T12:37:07.0152392+07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T22:05:36+07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
