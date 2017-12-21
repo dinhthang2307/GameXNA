@@ -42,5 +42,13 @@ namespace DL1
             get { return _model.Depth; }
             set { _model.Depth = value; }
         }
+        public float X
+        {
+            get { return _model.Left; }
+        }
+        public float Y
+        {
+            get { return _model.Top; }
+        }
     }
 }

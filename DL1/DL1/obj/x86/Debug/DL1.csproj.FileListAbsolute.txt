@@ -133,3 +133,10 @@ F:\MyRepository\GAME\GameXNA2\DL1\DL1\bin\Windows\x86\Debug\SharpDX.Direct3D11.x
 F:\MyRepository\GAME\GameXNA2\DL1\DL1\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
 F:\MyRepository\GAME\GameXNA2\DL1\DL1\bin\Windows\x86\Debug\SharpDX.XInput.xml
 F:\MyRepository\GAME\GameXNA2\DL1\DL1\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+F:\MyRepository\GAME\GameXNA2\DL1\DL1\bin\Windows\x86\Debug\Content\button\bt1.xnb
+F:\MyRepository\GAME\GameXNA2\DL1\DL1\bin\Windows\x86\Debug\Content\button\bt2.xnb
+F:\MyRepository\GAME\GameXNA2\DL1\DL1\bin\Windows\x86\Debug\Content\button\bt3.xnb
+F:\MyRepository\GAME\GameXNA2\DL1\DL1\bin\Windows\x86\Debug\Content\Effect\Aura\aura-01.xnb
+F:\MyRepository\GAME\GameXNA2\DL1\DL1\bin\Windows\x86\Debug\Content\Effect\Aura\aura-02.xnb
+F:\MyRepository\GAME\GameXNA2\DL1\DL1\bin\Windows\x86\Debug\Content\Effect\Aura\aura-03.xnb
+F:\MyRepository\GAME\GameXNA2\DL1\DL1\bin\Windows\x86\Debug\Content\Effect\Aura\aura-04.xnb

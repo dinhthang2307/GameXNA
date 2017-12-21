@@ -15,5 +15,11 @@
     ]
   },
   "map": "Maps\\BG",
+  "aura": [
+    "Effect\\Aura\\aura-01",
+    "Effect\\Aura\\aura-02",
+    "Effect\\Aura\\aura-03",
+    "Effect\\Aura\\aura-04"
+  ],
   "scaleY": 0.8
 }

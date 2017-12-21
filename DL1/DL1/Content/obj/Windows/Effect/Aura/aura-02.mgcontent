@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>F:/MyRepository/GAME/GameXNA2/DL1/DL1/Content/unit/walkingMan/unit-1.png</SourceFile>
-  <SourceTime>2017-10-10T21:06:37.3740392+07:00</SourceTime>
-  <DestFile>F:/MyRepository/GAME/GameXNA2/DL1/DL1/Content/bin/Windows/unit/walkingMan/unit-1.xnb</DestFile>
-  <DestTime>2017-12-17T16:15:12.299111+07:00</DestTime>
+  <SourceFile>F:/MyRepository/GAME/GameXNA2/DL1/DL1/Content/Effect/Aura/aura-02.png</SourceFile>
+  <SourceTime>2017-12-20T20:16:50.0705348+07:00</SourceTime>
+  <DestFile>F:/MyRepository/GAME/GameXNA2/DL1/DL1/Content/bin/Windows/Effect/Aura/aura-02.xnb</DestFile>
+  <DestTime>2017-12-20T20:38:01.8352756+07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T22:05:36+07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

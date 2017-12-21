@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DL1.sprites;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DL1
 {
@@ -29,6 +31,7 @@ namespace DL1
             _entities = new List<GameVisibleEntity2D>();
             this.IsMouseVisible = true;
             base.Initialize();
+            ResManager.Instance.Initialize(this);
         }
         
         /// <summary>
@@ -39,15 +42,33 @@ namespace DL1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            ResManager.Instance.Initialize(this);
             // TODO: use this.Content to load your game content here
             //_texture = this.Content.Load<Texture2D>("BG");
 
             var walkingMans = createWalkingManList();
             (_entities as List<GameVisibleEntity2D>).AddRange(walkingMans);
             _entities.Add(createBackground());
-       
+            var islandRes = ResManager.Instance.Load(Config.Instance.jsonCfg["map"].ToString());
 
+            _entities.Add(new Island(new Sprite2D(islandRes, 0, 0, 0.1f)));
+            var auraRes = ResManager.Instance.Load(Config.Instance.jsonCfg["aura"].Select(v=>v.ToString()).ToArray());
+
+            _entities.Add(new Aura(new Sprite2D (auraRes, (walkingMans[1].X)-22, (walkingMans[1].Y)-45, 0.7f)));
+
+            // var button = new GameButton(new Sprite2D(ResManager.Instance.Load("button\\bt1"), 0f, 0f, 0.9f));
+            /*  button.Click += (object sender, GameButtonEventArgs e) =>
+               {
+                   this.Window.Title = "Đã click nên button";
+               };*/
+
+            // _entities.Add(button);
+            /*   var menu = new GameMenu(new Sprite2D(ResManager.Instance.Load("button\\bt1"), 0f, 0f, 0.9f), 4);
+               menu.Click += (object sender, GameMenuEventArgs e) =>
+                {
+                    this.Window.Title = $"Nút số {(int)(e.Button.Tag) +1} được bấm";
+                };
+               _entities.Add(menu);*/
         }
 
         private Island createBackground()
@@ -91,14 +112,24 @@ namespace DL1
         {
             // TODO: Unload any non ContentManager content here
         }
-   
+
+        float x = 0f;
+        float dt = 0.01f;
         protected override void Update(GameTime gameTime)
         {
+          
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            //TODO: Add your update logic here  
             for (int i = 0; i < _entities.Count; i++)
             {
                 _entities[i].Update(gameTime);
+            }
+            KeyboardState kb = Keyboard.GetState();
+            if (kb.IsKeyDown(Keys.W))
+            {
+                x -= 4f;
             }
             MouseState ms = Mouse.GetState();
             if (ms.LeftButton == ButtonState.Pressed) {
@@ -123,7 +154,7 @@ namespace DL1
                     selectedIdx = -1;
                 }
             }
-            
+            matrix = Matrix.CreateTranslation(0f, x, 0f);
             base.Update(gameTime);
         }
 
